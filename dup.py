@@ -1,12 +1,33 @@
+import os
+
+try:
+    os.mkdir("Cleaned Files")
+except:
+    pass
+
+try:
+    os.chdir("/home/darkweb/Bug/File")
+except:
+    print("Wrong Path Exiting ...")
+    exit()
+
 linesSet = set()
-fileName = input("Enter File Name (include extension too file email.txt :- ")
-outFile = input("With What Name You want to save the file (include extension too :- ")
-outfile2 = open(outFile, "w")
-infile = open(fileName, "r")
-for line in infile:
-    if line not in linesSet:
-        outfile2.write(line)
-        linesSet.add(line)
-outfile2.close()
-print("")
-print("File Successfully Saved as ", outFile)
+FileCount = int(input("How Many File You Have :- "))
+fileName = 1
+outFile = 1
+folderPath = "/home/darkweb/Bug/Cleaned Files/"
+
+for i in range(FileCount):
+    newFilein = "file" + str(fileName) + ".txt"
+    newFileout = folderPath + "file" + str(outFile) + ".txt"
+    outfile2 = open(newFileout, "w")
+    infile = open(newFilein, "r")
+    for line in infile:
+        if line not in linesSet:
+            outfile2.write(line)
+            linesSet.add(line)
+    outfile2.close()
+    fileName += 1
+    outFile  +=1
+    
+print("Done")
