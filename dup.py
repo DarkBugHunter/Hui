@@ -1,4 +1,5 @@
 import os
+import glob
 
 try:
     os.mkdir("Cleaned Files")
@@ -12,22 +13,25 @@ except:
     exit()
 
 linesSet = set()
-FileCount = int(input("How Many File You Have :- "))
+txtFiles = []
+
+for files in glob.glob("*.txt"):
+    txtFiles.append(files)
+
+print(f"Found {len(txtFiles)} txt Files")
+
 fileName = 1
 outFile = 1
 folderPath = "/home/darkweb/Bug/Cleaned Files/"
 
-for i in range(FileCount):
-    newFilein = "file" + str(fileName) + ".txt"
-    newFileout = folderPath + "file" + str(outFile) + ".txt"
+for i in range(len(txtFiles)):
+    newFileout = folderPath + txtFiles[i]
     outfile2 = open(newFileout, "w")
-    infile = open(newFilein, "r")
+    infile = open(txtFiles[i], "r")
     for line in infile:
         if line not in linesSet:
             outfile2.write(line)
             linesSet.add(line)
     outfile2.close()
-    fileName += 1
-    outFile  +=1
     
 print("Done")
