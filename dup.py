@@ -36,5 +36,6 @@ for i in range(len(txtFiles)):
             outfile2.write(line)
             linesSet.add(line.lower())
     outfile2.close()
+    linesSet.clear()
     
 print("Done")
